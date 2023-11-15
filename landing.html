@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>NPS Result</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Thank You for Your Feedback!</h1>
+        <div class="result">
+            <p>Your Net Promoter Score (NPS) is: <span id="npsScore"></span></p>
+            <p>Based on your rating of <span id="selectedRating"></span></p>
+            <canvas id="npsChart"></canvas>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/result.js"></script>
+</body>
+</html>
