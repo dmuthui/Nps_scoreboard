@@ -1,21 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/landing.css" />
     <title>NPS Result</title>
-</head>
-<body>
-    <div class="container">
-        <h1>Thank You for Your Feedback!</h1>
-        <div class="result">
-            <p>Your Net Promoter Score (NPS) is: <span id="npsScore"></span></p>
-            <p>Based on your rating of <span id="selectedRating"></span></p>
-            <canvas id="npsChart"></canvas>
+  </head>
+  <body>
+    <!-- Left section outside the frame -->
+    <div class="left-section-outside">
+      <button class="home-button" onclick="goToHomePage()">Home</button>
+      <div class="highlights">
+        <h2>Highlights:</h2>
+        <div class="highlight">
+          <h3>Sad Face Highlights</h3>
+          <p>*Welcome & Greet customer with a smile.</p>
+          <p>*Be professional, Enthusiastic/Upbeat & Empathize.</p>
+          <p>*Be friendly & Personalize your interaction.</p>
         </div>
+        <div class="highlight">
+          <h3>Neutral Face Highlights</h3>
+          <p>*Actively listen & affirm what customer says.</p>
+          <p>*Do not interrupt a customer when speaking.</p>
+          <p>*Ensure maintaining a professional body language.</p>
+        </div>
+        <div class="highlight">
+          <h3>Happy Face Highlights</h3>
+          <p>*Confirm if the customer understood the resolution.</p>
+          <p>*Recommend other products and cross-sell to customers.</p>
+          <p>*Thank the customer for allowing us to serve them.</p>
+        </div>
+      </div>
     </div>
+
+    <!-- Frame section -->
+    <div class="container">
+      <h1>Thank You for Your Feedback!</h1>
+      <div class="result">
+        <p>Your Net Promoter Score (NPS) is: <span id="npsScore"></span></p>
+        <p>Based on your rating of <span id="selectedRating"></span></p>
+        <canvas id="npsChart"></canvas>
+      </div>
+    </div>
+
+    <!-- Right section outside the frame -->
+    <div class="right-section-outside">
+      <h2>Total summary of NPS feedback</h2>
+      <canvas id="summaryChart"></canvas>
+    </div>
+
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="js/result.js"></script>
+    <script src="js/summary.js"></script>
+    <script>
+        // Function to go to index.html
+        function goToHomePage() {
+          window.location.href = "index.html";
+        }
+      
+        let sadCount = parseInt(sessionStorage.getItem("sadCount")) || 0;
+        let neutralCount = parseInt(sessionStorage.getItem("neutralCount")) || 0;
+        let happyCount = parseInt(sessionStorage.getItem("happyCount")) || 0;
+      
+        document.addEventListener("DOMContentLoaded", function () {
+          updateSummaryChart();
+      
+          function submitRating(rating) {
+            sessionStorage.setItem("selectedRating", rating);
+      
+            if (rating >= 1 && rating <= 6) {
+              sadCount++;
+            } else if (rating === 7) {
+              neutralCount++;
+            } else if (rating >= 8 && rating <= 10) {
+              happyCount++;
+            }
+      
+            sessionStorage.setItem("sadCount", sadCount);
+            sessionStorage.setItem("neutralCount", neutralCount);
+            sessionStorage.setItem("happyCount", happyCount);
+      
+            updateSummaryChart();
+          }
+      
+          function updateSummaryChart() {
+            const total = sadCount + neutralCount + happyCount;
+      
+            const summaryCtx = document.getElementById("summaryChart").getContext("2d");
+            const summaryData = {
+              labels: ["Sad", "Neutral", "Happy"],
+              datasets: [
+                {
+                  data: [sadCount, neutralCount, happyCount],
+                  backgroundColor: ["#EF5350", "#FFCA28", "#66BB6A"],
+                },
+              ],
+            };
+      
+            // Destroy existing chart instance if it exists
+            if (window.summaryChart) {
+              window.summaryChart.destroy();
+            }
+      
+            window.summaryChart = new Chart(summaryCtx, {
+              type: "pie",
+              data: summaryData,
+            });
+          }
+        });
+      </script>
   </body>
 </html>
