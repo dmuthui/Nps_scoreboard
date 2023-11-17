@@ -21,6 +21,8 @@ body {
     text-align: center;
     width: 300%; 
     max-width: 300px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size:medium;
     background-color: #fff; 
     padding: 20px;
     border: 2px solid #090707;
@@ -52,11 +54,13 @@ h1 {
 .left-section-outside {
     position: fixed;
     top: 0.5px;
-    left: 10px;
-    font-family: Arial, sans-serif;
+    height: 95vh;
+    left: 5px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size:medium;
     border: 2px solid #010000;
-    border-radius: 5px;
-    background-color: rgb(137, 227, 143);
+    border-radius: 3px;
+    background-color: rgb(224, 232, 224);
     z-index: 1000;
 }
 
@@ -81,6 +85,8 @@ h1 {
     right: 10px; /* Adjust this value to position horizontally */
     transform: translateY(-50%);
     background-color: #fff;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size:medium;
     padding: 20px;
     border: 2px solid #333;
     border-radius: 10px;

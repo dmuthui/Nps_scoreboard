@@ -27,15 +27,15 @@ document.addEventListener("DOMContentLoaded", function () {
         type: "pie",
         data: data,
     });
-    // Include this to render the individual feedback chart
+    // Included to render the individual feedback chart
     npsChart.update();
 
-    // Create the summary pie chart
+    // Creates the summary pie chart
     const summaryCtx = document.getElementById("summaryChart").getContext("2d");
     const summaryData = {
         labels: ["Sad", "Neutral", "Happy"],
         datasets: [{
-            data: [30, 20, 50], // Replace with your actual combined data percentages
+            data: [30, 20, 50], 
             backgroundColor: ["#EF5350", "#FFCA28", "#66BB6A"],
         }],
     };

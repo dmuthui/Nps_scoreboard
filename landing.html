@@ -54,61 +54,61 @@
     <script src="js/result.js"></script>
     <script src="js/summary.js"></script>
     <script>
-        // Function to go to index.html
-        function goToHomePage() {
-          window.location.href = "index.html";
-        }
-      
-        let sadCount = parseInt(sessionStorage.getItem("sadCount")) || 0;
-        let neutralCount = parseInt(sessionStorage.getItem("neutralCount")) || 0;
-        let happyCount = parseInt(sessionStorage.getItem("happyCount")) || 0;
-      
-        document.addEventListener("DOMContentLoaded", function () {
-          updateSummaryChart();
-      
-          function submitRating(rating) {
-            sessionStorage.setItem("selectedRating", rating);
-      
-            if (rating >= 1 && rating <= 6) {
-              sadCount++;
-            } else if (rating === 7) {
-              neutralCount++;
-            } else if (rating >= 8 && rating <= 10) {
-              happyCount++;
-            }
-      
-            sessionStorage.setItem("sadCount", sadCount);
-            sessionStorage.setItem("neutralCount", neutralCount);
-            sessionStorage.setItem("happyCount", happyCount);
-      
-            updateSummaryChart();
-          }
-      
-          function updateSummaryChart() {
-            const total = sadCount + neutralCount + happyCount;
-      
-            const summaryCtx = document.getElementById("summaryChart").getContext("2d");
-            const summaryData = {
-              labels: ["Sad", "Neutral", "Happy"],
-              datasets: [
-                {
-                  data: [sadCount, neutralCount, happyCount],
-                  backgroundColor: ["#EF5350", "#FFCA28", "#66BB6A"],
-                },
-              ],
-            };
-      
-            // Destroy existing chart instance if it exists
-            if (window.summaryChart) {
-              window.summaryChart.destroy();
-            }
-      
-            window.summaryChart = new Chart(summaryCtx, {
-              type: "pie",
-              data: summaryData,
-            });
-          }
-        });
-      </script>
+  // Function to go to index.html
+  function goToHomePage() {
+    window.location.href = "index.html";
+  }
+
+  let sadCount = parseInt(sessionStorage.getItem("sadCount")) || 0;
+  let neutralCount = parseInt(sessionStorage.getItem("neutralCount")) || 0;
+  let happyCount = parseInt(sessionStorage.getItem("happyCount")) || 0;
+
+  document.addEventListener("DOMContentLoaded", function () {
+    updateSummaryChart();
+
+    function submitRating(rating) {
+      sessionStorage.setItem("selectedRating", rating);
+
+      if (rating >= 1 && rating <= 6) {
+        sadCount++;
+      } else if (rating === 7) {
+        neutralCount++;
+      } else if (rating >= 8 && rating <= 10) {
+        happyCount++;
+      }
+
+      sessionStorage.setItem("sadCount", sadCount);
+      sessionStorage.setItem("neutralCount", neutralCount);
+      sessionStorage.setItem("happyCount", happyCount);
+
+      updateSummaryChart();
+    }
+
+    function updateSummaryChart() {
+      const total = sadCount + neutralCount + happyCount;
+
+      const summaryCtx = document.getElementById("summaryChart").getContext("2d");
+      const summaryData = {
+        labels: ["Sad", "Neutral", "Happy"],
+        datasets: [
+          {
+            data: [sadCount, neutralCount, happyCount],
+            backgroundColor: ["#EF5350", "#FFCA28", "#66BB6A"],
+          },
+        ],
+      };
+
+      // Destroy existing chart instance if it exists
+      if (window.summaryChart) {
+        window.summaryChart.destroy();
+      }
+
+      window.summaryChart = new Chart(summaryCtx, {
+        type: "pie",
+        data: summaryData,
+      });
+    }
+  });
+</script>
   </body>
 </html>
