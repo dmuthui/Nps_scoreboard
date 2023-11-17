@@ -81,8 +81,8 @@ h1 {
 
 .right-section-outside {
     position: fixed;
-    top: 50%; /* Adjust this value to position vertically */
-    right: 10px; /* Adjust this value to position horizontally */
+    top: 50%; 
+    right: 10px; 
     transform: translateY(-50%);
     background-color: #fff;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -91,6 +91,6 @@ h1 {
     border: 2px solid #333;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    z-index: 1000; /* Ensure it's above other elements */
-    max-width: 300px; /* Adjust width as needed */
+    z-index: 1000; 
+    max-width: 300px; 
 }
